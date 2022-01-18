@@ -1,0 +1,1 @@
+/Users/april/Desktop/code/fragmentary/run_bowtie_mm10.sh

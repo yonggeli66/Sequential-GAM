@@ -1,0 +1,1 @@
+/Users/april/Desktop/code/fragmentary/calculate_merge_result_of_capture.sh

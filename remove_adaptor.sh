@@ -1,0 +1,1 @@
+/Users/april/Desktop/code/fragmentary/remove_adaptor.sh
