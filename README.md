@@ -51,5 +51,21 @@ parameters are:
 
 
 
+## model
 
+The parameters of build_3D_structure_snpstrain_with_parameter.py are:
+
+--chr_name: str,  default = "chr1", the chromosome to build 3D structure for.
+--cell_name: str, default= "6", the cell name to build.
+--method: str, default="overlap", the method to integrate the loci.
+--my_step: int, default=180000, the step for optimizing to iteration.
+--my_lr: float, default=1e-4, the learning rate for optimizing to search.
+--strain_plot: str, default="C", the strain of genome.
+--limit_LAD: float, default=1e-7.
+--limit_res: float, default=1e+9.
+--constant_LAD: float, default=1e-8.
+--constant_res: float, default=1e-3.
+--limit_power_LAD: int, default=3.
+--limit_power_res: int, default=3.
+--save_file_prefix: str,default="CS_depart_parameter_all_chr_10kb_", the file_prefix for save.
 
