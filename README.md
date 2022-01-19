@@ -69,3 +69,8 @@ The parameters of build_3D_structure_snpstrain_with_parameter.py are:
 --limit_power_res: int, default=3.
 --save_file_prefix: str,default="CS_depart_parameter_all_chr_10kb_", the file_prefix for save.
 
+
+
+## todo
+
+- modification of code to be more user-friendly.
