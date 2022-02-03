@@ -1,11 +1,56 @@
 # Sequential-GAM
-Pipeline code for Sequential-GAM(Genome Architecture Mapping).
+Pipeline for Sequential-GAM(Genome Architecture Mapping).
+
+
+
+## Contents
+
+- [Overview](##overview)
+
+- [Software Requirements](##Software Requirements[)
+- [mapping](##mapping)
+- [merged table](##merged table)
+- [run model](##run model)
+
+
+
+
+
+## Overview
+
+
+
+3D genome conformation plays an essential role in cell identity and gene regulation. However, how genome-wide hierarchical geometric structure is organized in single cells remains elusive. Here we developed Sequential-GAM (Sequential genome architecture mapping) to capture contiguous thin sections of the nucleus. Using Sequential-GAM, we constructed the hierarchical geometric structure and estimated the radial position of chromosomes, compartments, subcompartments, and genes in single cells. In this package, we provide the processing flow of the sequencing data and the construction of the 3D structure of individual chromosomes with the processed data.
+
+
+
+## Software Requirements
+
+Python 2.7
+
+[trim_galore 0.6.4](https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md)
+
+[Bowtie 2.3.5](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
+
+[Picard tool](https://broadinstitute.github.io/picard/)
+
+[tensorflow 1.13.1](https://github.com/tensorflow/docs/tree/r1.13/site/en/api_docs)
+
+[pandas](https://pandas.pydata.org/)
+
+[scipy](https://scipy.org/)
+
+[seaborn](https://seaborn.pydata.org/)
+
+
 
 ## mapping
 
 `whole_preprocess.sh` include the whole processing of mapping.
 
  usage: ` bash whole_preprocess.sh Cell_name`
+
+
 
 1.removing the adaptor by trim_galore
 
@@ -37,7 +82,7 @@ parameters are:
 
 
 
-## capture table
+## merged table
 
 1.calculating the capture or not for each window with given resolution (10kb in codes)
 
@@ -51,13 +96,13 @@ parameters are:
 
 
 
-## model
+## run model
 
 The parameters of build_3D_structure_snpstrain_with_parameter.py are:
 
 --chr_name: str,  default = "chr1", the chromosome to build 3D structure for.
 --cell_name: str, default= "6", the cell name to build.
---method: str, default="overlap", the method to integrate the loci.
+--method: str, default="overlap", the method to integrate the loci(>200 in the code), opt: "hierarchical"
 --my_step: int, default=180000, the step for optimizing to iteration.
 --my_lr: float, default=1e-4, the learning rate for optimizing to search.
 --strain_plot: str, default="C", the strain of genome.
@@ -67,10 +112,31 @@ The parameters of build_3D_structure_snpstrain_with_parameter.py are:
 --constant_res: float, default=1e-3.
 --limit_power_LAD: int, default=3.
 --limit_power_res: int, default=3.
---save_file_prefix: str,default="CS_depart_parameter_all_chr_10kb_", the file_prefix for save.
+--save_file_prefix: str,default="mm10_depart_parameter_all_chr_10kb_", the file_prefix for save.
 
 
 
-## todo
+Usage:
 
-- modification of code to be more user-friendly.
+`python build_3D_structure_snpstrain_with_parameter.py`
+
+
+
+Output:
+
+The estimated 3D structure of each loci:
+
+`/processed_data/set_1cell_6/mm10_depart_parameter_all_chr_10kb_C/chr1_10kb_location_data_overlap.txt`
+
+
+
+Notice:
+
+CAST_snps_indels.tsv and 129S1_snps_indels.tsv in this github is incomplete. The complete file need to be download from ftp://ftp-mouse.sanger.ac.uk/REL-1807-SNPs_Indels/
+
+
+
+Expected run time:
+
+The runtime in a computer with 264 GB RAM, 56 cores@2.60GHz for the demo is less than 2h.
+

@@ -1,5 +1,4 @@
 # build_3D_structure_snpstrain_with_parameter.py
-# this is from build_3D_structure_snpstrain.py
 
 from __future__ import division
 from __future__ import print_function
@@ -25,14 +24,14 @@ parser.add_argument('--cell_name', type=str, default= "6")
 parser.add_argument('--method', type=str, default="overlap")
 parser.add_argument('--my_step', type=int, default=180000)
 parser.add_argument('--my_lr', type=float, default=1e-4)
-parser.add_argument('--strain_plot', type=str, default="C")
+parser.add_argument('--strain_plot', type=str, default="C") #C means CAST, and S means 129S1
 parser.add_argument('--limit_LAD', type=float, default=1e-7)
 parser.add_argument('--limit_res', type=float, default=1e+9)
 parser.add_argument('--constant_LAD', type=float, default=1e-8)
 parser.add_argument('--constant_res', type=float, default=1e-3)
 parser.add_argument('--limit_power_LAD', type=int, default=3)
 parser.add_argument('--limit_power_res', type=int, default=3)
-parser.add_argument('--save_file_prefix',type=str,default="CS_depart_parameter_all_chr_10kb_")
+parser.add_argument('--save_file_prefix',type=str,default="mm10_depart_parameter_all_chr_10kb_")
 
 args = parser.parse_args()
 
@@ -59,12 +58,12 @@ LAD_pattern="m_p_LAD"
 # strain_plot="C"
 # LAD_pattern="m_p_LAD"
 
-prefix = '/home/tianyu/'if os.path.exists('/home/tianyu') else '/home/'
-png_dir=prefix+"/ygli/gam_paper_data/single_cell_3D/set_1cell/set_1cell_"+str(cell_name)+"/"+save_file_prefix+strain_plot+"/"
+prefix = './'
+png_dir = prefix + "processed_data/set_1cell_"+str(cell_name)+"/"+save_file_prefix+strain_plot+"/"
+z_axis_dir = prefix + "processed_data/set_1cell_"+str(cell_name)+"/all_chr_10kb_"+strain+"/"
 
-# png_dir=prefix+"/ygli/gam_paper_data/single_cell_3D/set_1cell/set_1cell_6/all_chr_10kb_"+strain_plot+"/"
 R=4.3975
-resolution=1e+4 # consist with input data
+resolution=1e+4 # consist with input mapped data
 
 #################################################################################
 # def load LAD data function
@@ -93,11 +92,11 @@ def load_LAD_data_m_p_LAD(chr_name,which_strain):
     chr_needed=[chr_name]
     if which_strain=="C":
         # dir_LAD=prefix+"/ygli/gam_paper_data/lad_data/ES_paternal_LAD_coordinates.bed"
-        dir_LAD=prefix+"/ygli/gam_paper_data/lad_data/CAST_paternal.bed"
+        dir_LAD=prefix+"CAST_paternal.bed"
         # dir_LAD=prefix+"/ygli/gam_paper_data/lad_data/129S1_paternal.tsv"
     elif which_strain=="S":
         # dir_LAD=prefix+"/ygli/gam_paper_data/lad_data/ES_maternal_LAD_coordinates.bed"
-        dir_LAD=prefix+"/ygli/gam_paper_data/lad_data/129S1_maternal.bed"
+        dir_LAD=prefix+"129S1_maternal.bed"
         # dir_LAD=prefix+"/ygli/gam_paper_data/lad_data/CAST_maternal.bed"
     with open(dir_LAD,'r') as f:
         all_lines=f.readlines()
@@ -165,7 +164,8 @@ def load_NP_data(chr_name,strain):
     dic_loci_location_head_loci_index={}
 
 #     with open(prefix+"/ygli/gam_paper_data/gam_seq_mapped_219/merge_result_2_219/set_1cell/set_1cell_5/all_chr_10kb_"+strain+"/"+chr_name+"_10kb_"+strain+"_distance_data_1.txt",'r') as f:
-    with open(prefix+"/ygli/gam_paper_data/gam_seq_mapped_219/merge_result_2_219/set_1cell/set_1cell_"+str(cell_name)+"/all_chr_10kb_"+strain+"/"+chr_name+"_10kb_"+strain+"_distance_data_1.txt",'r') as f:
+    # with open(prefix+"/ygli/gam_paper_data/gam_seq_mapped_219/merge_result_2_219/set_1cell/set_1cell_"+str(cell_name)+"/all_chr_10kb_"+strain+"/"+chr_name+"_10kb_"+strain+"_distance_data_1.txt",'r') as f:
+    with open(prefix + z_axis_dir + chr_name + "_10kb_" + strain + "_distance_data_1.txt",'r') as f:
         all_lines=f.readlines()
         index=0
         for each_line in all_lines:
@@ -497,7 +497,7 @@ point_r_lower_bound_S=calculate_point_r_lower_bound(R,sample_num_S,point_h_set_S
 
 ## 'feat_name', 'source_int', 'mapped_int', 'source_id', 'mapped_id', 'source_length', 'mapped_length', 'source_start', 'source_stop', 'source_strand', 'source_sub_start', 'source_sub_stop', 'mapped_start', 'mapped_stop', 'mapped_strand', 'coverage', 'recip', 'asm_unit', '
 def load_SNP_C(chr_name,resolution):
-    dir_SNP=prefix+"/ygli/gam_paper_data/f123_SNP/CAST_snps_indels.tsv"
+    dir_SNP=prefix+"CAST_snps_indels.tsv"
     chr_needed=[chr_name]
     SNP_location_complete=[]
     i=0
@@ -520,7 +520,7 @@ def load_SNP_C(chr_name,resolution):
     
 ## 'feat_name', 'source_int', 'mapped_int', 'source_id', 'mapped_id', 'source_length', 'mapped_length', 'source_start', 'source_stop', 'source_strand', 'source_sub_start', 'source_sub_stop', 'mapped_start', 'mapped_stop', 'mapped_strand', 'coverage', 'recip', 'asm_unit', '
 def load_SNP_S(chr_name,resolution):
-    dir_SNP=prefix+"/ygli/gam_paper_data/f123_SNP/129S1_snps_indels.tsv"
+    dir_SNP=prefix+"129S1_snps_indels.tsv"
     chr_needed=[chr_name]
     SNP_location_complete=[]
     i=0

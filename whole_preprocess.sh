@@ -29,12 +29,19 @@ file_name=$1
 # dir_bowtie_result="/home/ygli/gam_paper_data/gam_seq_mapped_219/bowtie_result/" 
 # dir_bed="/home/ygli/gam_paper_data/gam_seq_mapped_219/"
 
-code_dir="/home/ygli/gam_paper_data/code/"
-fastqScreen_dir="/home/ygli/tools/fastq_screen_v0.14.0/"
-dir_gam_seq_raw="/home/ygli/gam_paper_data/gam_seq_raw_control/"
-dir_data_after_adaptor="/home/ygli/gam_paper_data/gam_seq_mapped_control/data_after_adaptor/" 
-dir_bowtie_result="/home/ygli/gam_paper_data/gam_seq_mapped_control/bowtie_result/" 
-dir_bed="/home/ygli/gam_paper_data/gam_seq_mapped_control/"
+# code_dir="/home/ygli/gam_paper_data/code/"
+# fastqScreen_dir="/home/ygli/tools/fastq_screen_v0.14.0/"
+# dir_gam_seq_raw="/home/ygli/gam_paper_data/gam_seq_raw_control/"
+# dir_data_after_adaptor="/home/ygli/gam_paper_data/gam_seq_mapped_control/data_after_adaptor/" 
+# dir_bowtie_result="/home/ygli/gam_paper_data/gam_seq_mapped_control/bowtie_result/" 
+# dir_bed="/home/ygli/gam_paper_data/gam_seq_mapped_control/"
+
+code_dir="../"
+fastqScreen_dir="dir_to_fastq_screen/fastq_screen_v0.14.0/"
+dir_gam_seq_raw="dir_to_fastq_data/gam_seq_raw_control/"
+dir_data_after_adaptor="dir_to_save_data_removed_adaptor/data_after_adaptor/" 
+dir_bowtie_result="dir_to_save_mapped_data/bowtie_result/" 
+dir_bed="dir_to_reference_chr_size_with_bed_format/gam_seq_mapped_control/"
 
 # remove adaptor
 echo "=========remove adaptor========="
