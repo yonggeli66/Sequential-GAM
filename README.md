@@ -5,12 +5,12 @@ Pipeline for Sequential-GAM(Genome Architecture Mapping).
 
 ## Contents
 
-- [Overview](##overview)
+- [Overview](#overview)
 
-- [Software Requirements](##Software Requirements[)
-- [mapping](##mapping)
-- [merged table](##merged table)
-- [run model](##run model)
+- [Software Requirements](#Software Requirements[)
+- [mapping](#mapping)
+- [merged table](#merged table)
+- [run model](#run model)
 
 
 
