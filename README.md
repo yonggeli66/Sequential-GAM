@@ -99,7 +99,7 @@ parameters are:
 
 ## run model
 
-The parameters of build_3D_structure_snpstrain_with_parameter.py are:
+The parameters of build_3D_structure.py are:
 
 --chr_name: str,  default = "chr1", the chromosome to build 3D structure for.
 --cell_name: str, default= "6", the cell name to build.
@@ -118,7 +118,7 @@ The parameters of build_3D_structure_snpstrain_with_parameter.py are:
 
 Usage:
 
-`python build_3D_structure_snpstrain_with_parameter_withchangedir.py --chr_name chr1 \
+`python build_3D_structure.py --chr_name chr1 \
     --save_file_prefix newmm10_depart_parameter_all_chr_10kb_ \
     --cell_name 17 --strain_plot C \
     --cLAD_dropout 0.1 --limit_LAD 1e-7 --limit_res 1e+9 \
