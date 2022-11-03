@@ -6,8 +6,7 @@ Pipeline for Sequential-GAM(Genome Architecture Mapping).
 ## Contents
 
 - [Overview](#overview)
-
-- [Software Requirements](#Software Requirements[)
+- [Software Requirements](#Software Requirements)
 - [mapping](#mapping)
 - [merged table](#merged table)
 - [run model](#run model)
@@ -33,6 +32,8 @@ Python 2.7
 [Bowtie 2.3.5](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 
 [Picard tool](https://broadinstitute.github.io/picard/)
+
+[dip-C](https://github.com/lh3/hickit)
 
 [tensorflow 1.13.1](https://github.com/tensorflow/docs/tree/r1.13/site/en/api_docs)
 
@@ -102,37 +103,43 @@ The parameters of build_3D_structure_snpstrain_with_parameter.py are:
 
 --chr_name: str,  default = "chr1", the chromosome to build 3D structure for.
 --cell_name: str, default= "6", the cell name to build.
---method: str, default="overlap", the method to integrate the loci(>200 in the code), opt: "hierarchical"
 --my_step: int, default=180000, the step for optimizing to iteration.
 --my_lr: float, default=1e-4, the learning rate for optimizing to search.
 --strain_plot: str, default="C", the strain of genome.
---limit_LAD: float, default=1e-7.
---limit_res: float, default=1e+9.
+--limit_LAD: float, default=1e-3.
+--limit_res: float, default=1e-3.
 --constant_LAD: float, default=1e-8.
 --constant_res: float, default=1e-3.
 --limit_power_LAD: int, default=3.
---limit_power_res: int, default=3.
---save_file_prefix: str,default="mm10_depart_parameter_all_chr_10kb_", the file_prefix for save.
+--limit_power_res: int, default=1.
+--save_file_prefix: str,default="newmm10_depart_parameter_all_chr_10kb_", the file_prefix for save.
 
 
 
 Usage:
 
-`python build_3D_structure_snpstrain_with_parameter.py`
-
-
+`python build_3D_structure_snpstrain_with_parameter_withchangedir.py --chr_name chr1 \
+    --save_file_prefix newmm10_depart_parameter_all_chr_10kb_ \
+    --cell_name 17 --strain_plot C \
+    --cLAD_dropout 0.1 --limit_LAD 1e-7 --limit_res 1e+9 \
+    --limit_power_LAD 3 --limit_power_res 3 \
+    --power_law_p sampler \
+    --input_z_file_prefix ./seqGAM_data/gam_seq_mapped/gam_seq_mapped_414_ \
+--input_z_file_prefix ./seqGAM_data/gam_seq_mapped/gam_seq_mapped_414_ \
+--input_LAD_file_prefix ./seqGAM_data/GSE17051_cLAD_regions_mm10_10000/ \
+--powerlaw_paramter_file ./fit_parameter_each_chr_sampler.csv
+`
 
 Output:
 
 The estimated 3D structure of each loci:
 
-`/processed_data/set_1cell_6/mm10_depart_parameter_all_chr_10kb_C/chr1_10kb_location_data_overlap.txt`
+`/processed_data/set_1cell_28/newmm10_depart_parameter_all_chr_10kb_C/chr1_10kb_location_data_overlap.txt`
 
 
+<!-- Notice:
 
-Notice:
-
-CAST_snps_indels.tsv and 129S1_snps_indels.tsv in this github is incomplete. The complete file need to be download from ftp://ftp-mouse.sanger.ac.uk/REL-1807-SNPs_Indels/
+CAST_snps_indels.tsv and 129S1_snps_indels.tsv in this github is incomplete. The complete file need to be download from ftp://ftp-mouse.sanger.ac.uk/REL-1807-SNPs_Indels/ -->
 
 
 

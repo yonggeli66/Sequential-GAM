@@ -6,7 +6,8 @@ file_name=$1
 # dir_in="/home/ygli/gam_paper_data/gam_seq_raw/"${file_name}"/"
 # dir_out="/home/ygli/gam_paper_data/gam_seq_mapped/data_after_adaptor/"${file_name}"/"
 
-dir_in=$2${file_name}"/Cleandata/"
+# dir_in=$2${file_name}"/Cleandata/"
+dir_in=$2${file_name}"/"
 dir_out=$3${file_name}"/"
 
 cd ${dir_in}"/"

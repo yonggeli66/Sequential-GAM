@@ -8,13 +8,13 @@ cell_list=$1
 chromatin=$2
 resolution=$3
 
-code_dir="/home/ygli/gam_paper_data/gam_seq_mapped_219/"
-dir_gam_seq_raw="/home/ygli/gam_paper_data/gam_seq_raw_219/"
-dir_data_after_adaptor="/home/ygli/gam_paper_data/gam_seq_mapped_219/data_after_adaptor/" 
-dir_bowtie_result="/home/ygli/gam_paper_data/gam_seq_mapped_219/bowtie_result/" 
-dir_bed="/home/ygli/gam_paper_data/gam_seq_mapped_219/"
-first_cell="Cell17"
-final_cell="Cell20"
+code_dir="/home/ygli/gam_paper_data/gam_seq_mapped_222/"
+dir_gam_seq_raw="/home/ygli/gam_paper_data/gam_seq_raw_222/"
+dir_data_after_adaptor="/home/ygli/gam_paper_data/gam_seq_mapped_222/data_after_adaptor/" 
+dir_bowtie_result="/home/ygli/gam_paper_data/gam_seq_mapped_222/bowtie_result/" 
+dir_bed="/home/ygli/gam_paper_data/gam_seq_mapped_222/"
+first_cell="Cell21"
+final_cell="Cell22"
 
 echo "calculate the map of each cell in "$cell_list" over "$chromatin" in "$resolution" kb"
 
