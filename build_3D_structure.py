@@ -50,16 +50,18 @@ def sample_paramter_result(parameter_fit_bestresult, sample_chr_name, sampler_pa
     sampler_result_output = np.median(sampler_result)
     iter_round_upperbound = 300
     iter_round = 0
-    p_cutoff = 10
-    while sampler_parameter=='p' and sampler_result_output>p_cutoff and iter_round<iter_round_upperbound:
+    # p_cutoff = 10
+    p_cutoff_big = 6
+    p_cutoff_small = 3
+    while sampler_parameter=='p' and (sampler_result_output>p_cutoff_big or sampler_result_output<p_cutoff_small) and iter_round<iter_round_upperbound:
         seed_sample+=1
         np.random.seed(seed_sample)
         s, loc, scale = float_para
         sampler_result = lognorm.rvs(s, loc=loc, scale=scale, size=10000)
         sampler_result_output = np.median(sampler_result)
         iter_round+=1
-    if sampler_parameter=='p' and sampler_result_output>p_cutoff: #if after iter, still big
-        sampler_result_output = np.median(sampler_result[np.where(sampler_result<p_cutoff)])
+    if sampler_parameter=='p' and (sampler_result_output>p_cutoff_big or sampler_result_output<p_cutoff_small): #if after iter, still big
+        sampler_result_output = np.median(sampler_result[np.where((sampler_result<p_cutoff_big)&(sampler_result>p_cutoff_small))])
 
     return sampler_result_output
 
